@@ -1,5 +1,5 @@
 package Patterns;
-import java.util.Scanner;
+import java.util.*;
 
 class Pattern{
 	public Scanner s= new Scanner(System.in);
@@ -22,9 +22,11 @@ class Pattern{
 	}
 }
 
-public class Pattern1 {
+public class Pattern3 {
 
 	public static void main(String[] args) {
 		Pattern o = new Pattern();
+
 	}
+
 }

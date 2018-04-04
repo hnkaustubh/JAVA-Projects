@@ -1,12 +1,10 @@
 package Patterns;
-import java.util.Scanner;
+import java.util.*;
 
 class StarPattern{
 	private int i,j,k,n;
 	public Scanner s = new Scanner(System.in);
 	StarPattern(){
-//		System.out.println("How many rows of the Pattern do you want?");
-//		n = s.nextInt();
 		
 			for(i=1;i<=7;i++) {
 				for(j=1;j<=i;j++) {
@@ -42,7 +40,8 @@ class StarPattern{
 		}
 	}
 
-public class Pattern2 {
+
+public class Pattern4 {
 
 	public static void main(String[] args) {
 		StarPattern o = new StarPattern();

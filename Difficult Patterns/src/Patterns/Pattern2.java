@@ -1,7 +1,7 @@
 package Patterns;
 import java.util.*;
 
-public class FloydTriangle {
+public class Pattern2 {
 
 	public static void main(String[] args) {
 		Scanner s = new Scanner(System.in);
@@ -18,6 +18,7 @@ public class FloydTriangle {
 			}
 			System.out.println("");
 		}
-		
+
 	}
+
 }
