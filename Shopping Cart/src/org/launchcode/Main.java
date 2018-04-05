@@ -1068,6 +1068,9 @@ class BuyOrCart extends Details{
                         System.out.println("Price: "+price);
                     }
                 }
+                else{
+                    throw new SizeLessException("Sorry - Size of Cart is LESS THAN the number of elements you want to remove");
+                }
             }
             else
             {
@@ -1082,6 +1085,12 @@ interface Payment{
 
 class AccountBalanceExceededException extends RuntimeException{
     AccountBalanceExceededException(String msg){
+        super(msg);
+    }
+}
+
+class SizeLessException extends RuntimeException{
+    SizeLessException(String msg){
         super(msg);
     }
 }
