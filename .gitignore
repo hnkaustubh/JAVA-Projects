@@ -1,4 +1,8 @@
 .classpath
 .project
 .DS_Store
-.idea
+.idea/
+.bin/
+.out/
+*.class
+*.iml
