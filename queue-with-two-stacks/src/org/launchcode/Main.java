@@ -11,7 +11,6 @@ public class Main {
         q2st.enQueue(10);
         q2st.enQueue(15);
         q2st.enQueue(20);
-        q2st.enQueue(25);
         q2st.showQueue();
 
         System.out.println();
