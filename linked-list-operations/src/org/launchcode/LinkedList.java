@@ -298,4 +298,55 @@ public class LinkedList {
             n1.next = next2;
         }
     }
+
+    public void deleteValuesLessThanN(int num) {
+        Node n = head;
+        Node prev = null;
+
+        while (n.next != null) {
+            if (n.data >= num) {
+                prev = n;
+                n = n.next;
+            } else {
+                if (n == head) {
+                    head = head.next;
+                    prev = head;
+                    n = n.next;
+                } else {
+                    prev.next = n.next;
+                }
+            }
+        }
+    }
+    
+    public void deleteNLastElements(int N){
+        Node n1 = head;
+        Node prev = null;
+        Node n2 = head;
+
+        for(int i=0; i<N; i++)
+            n2 = n2.next;
+
+        while(n2 != null){
+            prev = n1;
+            n1 = n1.next;
+            n2 = n2.next;
+        }
+
+        while(n1 != null){
+            prev.next = n1.next;
+            n1 = n1.next;
+        }
+    }
+
+    public void deleteNFirstElements(int num) {
+        Node n = head;
+        Node prev = null;
+        int count = 0;
+
+        while (n.next != null && count != num) {
+            count++;
+            head = head.next;
+        }
+    }
 }
