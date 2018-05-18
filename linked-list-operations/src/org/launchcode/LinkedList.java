@@ -318,7 +318,7 @@ public class LinkedList {
             }
         }
     }
-    
+
     public void deleteNLastElements(int N){
         Node n1 = head;
         Node prev = null;
@@ -348,5 +348,75 @@ public class LinkedList {
             count++;
             head = head.next;
         }
+    }
+
+    public void replaceValues(int val, int replaceVal) {
+        Node n = head;
+
+        while (n.next != null) {
+            if (n.data == val) {
+                n.data = replaceVal;
+                n = n.next;
+            } else {
+                n = n.next;
+            }
+        }
+    }
+
+    public void deleteValues(int val) {
+        Node n = head;
+        Node prev = null;
+
+        if (head.data == val)
+            head = head.next;
+        else {
+            while (n.next != null) {
+                if (n.data == val) {
+                    prev.next = n.next;
+                    n = n.next;
+                } else {
+                    prev = n;
+                    n = n.next;
+                }
+            }
+        }
+    }
+
+    public void exchangeHalves(){
+        Node n1 = head;
+        Node n2 = head.next;
+
+        while(n2 != null && n2.next != null){
+            n1 = n1.next;
+            n2 = n2.next.next;
+        }
+        n2.next = head;
+        head = n1.next;
+        n1.next = null;
+    }
+
+    public void separateAlternateNodes(){
+        Node n = head;
+        Node prev = null;
+        LinkedList even = new LinkedList();
+        int count = 0;
+
+        while(n != null){
+            count++;
+            if(count % 2 == 0){
+                even.insert(n.data);
+                prev.next = n.next;
+                n = n.next;
+            }
+            else{
+                prev = n;
+                n = n.next;
+            }
+        }
+        n = head;
+        while(n.next != null){
+            n = n.next;
+        }
+        n.next = even.head;
     }
 }
