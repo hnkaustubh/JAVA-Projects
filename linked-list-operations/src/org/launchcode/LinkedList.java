@@ -419,4 +419,141 @@ public class LinkedList {
         }
         n.next = even.head;
     }
+
+    public void oddEvenValuesSeparate() {
+        Node n = head;
+        Node prev = null;
+        LinkedList even = new LinkedList();
+
+        while (n != null) {
+            if (n.data % 2 == 0) {
+                even.insert(n.data);
+                prev.next = n.next;
+                n = n.next;
+            } else {
+                prev = n;
+                n = n.next;
+            }
+        }
+        n = head;
+        while (n.next != null) {
+            n = n.next;
+        }
+        n.next = even.head;
+    }
+
+    public void replaceOddValues() {
+        Node n = head;
+        Node prev = null;
+        LinkedList even = new LinkedList();
+
+        while (n != null) {
+            if (n.data % 2 == 0) {
+                even.insert(n.data);
+                prev.next = n.next;
+                n = n.next;
+            } else {
+                n.data = '%';
+                prev = n;
+                n = n.next;
+            }
+        }
+        n = head;
+        while (n.next != null) {
+            n = n.next;
+        }
+        n.next = even.head;
+    }
+
+    public void groupValuesGreaterThanNum(int num) {
+        Node n = head;
+        Node prev = null;
+        LinkedList greaterThanNum = new LinkedList();
+
+        while (n != null) {
+            if (n.data > num) {
+                greaterThanNum.insert(n.data);
+                prev.next = n.next;
+                n = n.next;
+            } else {
+                prev = n;
+                n = n.next;
+            }
+        }
+        n = head;
+        while (n.next != null) {
+            n = n.next;
+        }
+
+        n.next = greaterThanNum.head;
+    }
+
+    public int countNum(int num) {
+        Node n = head;
+        int count = 0;
+
+        while (n != null) {
+            if (n.data == num) {
+                count++;
+                n = n.next;
+            } else {
+                n = n.next;
+            }
+        }
+        return count;
+    }
+
+    public void breakIntoThrees(){
+        Node n = head;
+        int count1 = 0;
+        int count2 = 0;
+        int count3 = 0;
+        LinkedList list1 = new LinkedList();
+        LinkedList list2 = new LinkedList();
+        LinkedList list3 = new LinkedList();
+
+        while(n != null){
+            count1++;
+            n = n.next;
+        }
+
+        n = head;
+
+        while(n.next != null && count2 < (count1/3)){
+            count2++;
+            list1.insert(n.data);
+            n = n.next;
+        }
+        while(n.next != null && count3 < (count1/3)){
+            count3++;
+            list2.insert(n.data);
+            n = n.next;
+        }
+        while(n != null){
+            list3.insert(n.data);
+            n = n.next;
+        }
+        list1.show();
+        list2.show();
+        list3.show();
+    }
+
+    public void reverseLinkedList(){
+        Node current = head;
+        Node prev = null;
+        Node next = null;
+
+        while(current != null){
+            next = current.next;
+            current.next = prev;
+            prev = current;
+            current = next;
+        }
+
+        while(prev != null){
+            System.out.print(prev.data + "\t");
+            prev = prev.next;
+        }
+        System.out.println();
+    }
 }
