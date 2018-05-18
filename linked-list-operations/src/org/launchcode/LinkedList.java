@@ -73,7 +73,6 @@ public class LinkedList {
     }
 
     public void deleteFirstElement() {
-        int temp = head.data;
         head = head.next;
     }
 
@@ -103,19 +102,20 @@ public class LinkedList {
         prev.next = p.next;
     }
 
-    public void deleteDups() {
+    public void deleteDups(){
         Node n = head;
         Node prev = null;
         Hashtable ht = new Hashtable();
 
-        while (n.next != null) {
-            if (!(ht.containsKey(n.data))) {
-                ht.put(n.data, true);
-                prev = n;
-                n = n.next;
-            } else if (ht.containsKey(n.data)) {
+        while(n != null){
+            if(ht.containsKey(n.data)){
                 prev.next = n.next;
                 n = n.next;
+            }
+            else{
+                ht.put(n.data,true);
+                prev = n;
+                 n = n.next;
             }
         }
     }
@@ -173,13 +173,15 @@ public class LinkedList {
         }
     }
 
-    public void insertDataAtPosition(int data, int pos) {
+    public void insertDataAtPosition(int data,int pos){
         Node node = new Node();
         node.data = data;
+
         Node n = head;
+        Node prev = null;
         int count = 1;
 
-        while (n.next != null && count != pos) {
+        while(n.next != null && count != pos){
             count++;
             n = n.next;
         }
@@ -199,10 +201,10 @@ public class LinkedList {
         return count;
     }
 
-    public void rotateLinkedList(int num){
-        for(int i=0; i<num; i++){
+    public void rotateList(int N){
+        for(int i=0; i<N; i++){
             Node n = head;
-            Node prev = null;
+            Node prev = n;
 
             while(n.next != null){
                 prev = n;
@@ -225,21 +227,54 @@ public class LinkedList {
         return count;
     }
 
-    public void partition() {
+    public void partition(int x) {
+        Node node = new Node();
+        node.data = x;
         Node n = head;
         Node prev = null;
-        int length = 0;
+        LinkedList greaterThanX = new LinkedList();
 
-        while (n != null) {
-            length++;
+        while(n != null){
+            if(n.data > x){
+                greaterThanX.insert(n.data);
+                prev.next = n.next;
+                n = n.next;
+            }
+            else if(n.data < x){
+                prev = n;
+                n = n.next;
+            }
+            else if(n.data == x){
+                prev.next = n.next;
+                n = n.next;
+            }
+        }
+
+        n = head;
+        while(n.next != null){
             n = n.next;
         }
-        int count = 0;
+        n.next = node;
+        node.next = greaterThanX.head;
+    }
 
-        while (n.next != null && count < (length / 2)) {
-            n = n.next;
+    public void swapNodesInPairs(){
+        Node n1 = head;
+        Node n2 = head;
+        int count = 1;
+
+        while(n2.next != null && count != 2){
+            count++;
+            n2 = n2.next;
         }
-        prev.next = null;
+        Node next2 = n2.next;
+        head = n2;
+        head.next = n1;
+        n1.next = next2;
+
+        for(int i=0; i<(length()-2)/2; i++){
+
+        }
     }
 
     public void deleteValuesLessThanN(int num) {
@@ -262,51 +297,63 @@ public class LinkedList {
         }
     }
 
-    public void exchangePositions(int pos1, int pos2) {
+    public void exchangePositions(int pos1,int pos2){
         Node n1 = head;
         Node n2 = head;
         Node prev1 = null;
         Node prev2 = null;
-        int count1 = 1;
-        int count2 = 1;
+        int count1 = 1,count2 = 1;
 
-        while (n1.next != null && count1 != pos1) {
-            count1++;
-            prev1 = n1;
-            n1 = n1.next;
+        if(pos1 == 1){
+            while(n2.next != null && count2 != pos2){
+                count2++;
+                prev2 = n2;
+                n2 = n2.next;
+            }
+
+            Node next2 = n2.next;
+            head = n2;
+            n2.next = n1.next;
+            prev2.next = n1;
+            n1.next = next2;
         }
+        else{
+            while(n1.next != null && count1 != pos1){
+                count1++;
+                prev1 = n1;
+                n1 = n1.next;
+            }
 
-        while (n2.next != null && count2 != pos2) {
-            count2++;
-            prev2 = n2;
-            n2 = n2.next;
+            while(n2.next != null && count2 != pos2){
+                count2++;
+                prev2 = n2;
+                n2 = n2.next;
+            }
+
+            Node next2 = n2.next;
+            prev1.next = n2;
+            n2.next = n1.next;
+            prev2.next = n1;
+            n1.next = next2;
         }
-
-        Node next1 = n1.next;
-        Node next2 = n2.next;
-        prev1.next = n2;
-        n2.next = next1;
-        prev2.next = n1;
-        n1.next = next2;
     }
 
-    public void deleteNLastElements(int num) {
+    public void deleteNLastElements(int N){
         Node n1 = head;
+        Node prev = null;
         Node n2 = head;
-        Node prev1 = null;
 
-        for (int i = 1; i < num; i++) {
+        for(int i=0; i<N; i++)
             n2 = n2.next;
-        }
 
-        while (n2.next != null) {
-            prev1 = n1;
+        while(n2 != null){
+            prev = n1;
             n1 = n1.next;
             n2 = n2.next;
         }
 
-        while (n1 != null) {
-            prev1.next = n1.next;
+        while(n1 != null){
+            prev.next = n1.next;
             n1 = n1.next;
         }
     }
@@ -354,41 +401,39 @@ public class LinkedList {
         }
     }
 
-    public void exchangeHalves() {
+    public void exchangeHalves(){
         Node n1 = head;
         Node n2 = head.next;
-        Node n3 = head;
-        Node prev = null;
 
-        while (n2.next != null && n2.next.next != null) {
+        while(n2 != null && n2.next != null){
             n1 = n1.next;
             n2 = n2.next.next;
         }
+        n2.next = head;
         head = n1.next;
         n1.next = null;
-        n2.next = n3;
     }
 
-    public void oddEvenNodesSeparate() {
+    public void separateAlternateNodes(){
         Node n = head;
         Node prev = null;
-        int count = 0;
         LinkedList even = new LinkedList();
+        int count = 0;
 
-        while (n != null) {
+        while(n != null){
             count++;
-            if (count % 2 == 0) {
+            if(count % 2 == 0){
                 even.insert(n.data);
                 prev.next = n.next;
                 n = n.next;
-            } else {
+            }
+            else{
                 prev = n;
                 n = n.next;
             }
         }
         n = head;
-
-        while (n.next != null) {
+        while(n.next != null){
             n = n.next;
         }
         n.next = even.head;
@@ -517,7 +562,7 @@ public class LinkedList {
         Node prev = null;
         Node next = null;
 
-        while(current != null) {
+        while(current != null){
             next = current.next;
             current.next = prev;
             prev = current;
