@@ -172,4 +172,47 @@ public class LinkedList {
             }
         }
     }
+
+    public void insertDataAtPosition(int data,int pos){
+        Node node = new Node();
+        node.data = data;
+
+        Node n = head;
+        Node prev = null;
+        int count = 1;
+
+        while(n.next != null && count != pos){
+            count++;
+            n = n.next;
+        }
+        Node next = n.next;
+        n.next = node;
+        node.next = next;
+    }
+
+    public int searchData(int data) {
+        Node n = head;
+        int count = 0;
+
+        while (n.next != null && n.data != data) {
+            count++;
+            n = n.next;
+        }
+        return count;
+    }
+
+    public void rotateList(int N){
+        for(int i=0; i<N; i++){
+            Node n = head;
+            Node prev = n;
+
+            while(n.next != null){
+                prev = n;
+                n = n.next;
+            }
+            n.next = head;
+            head = n;
+            prev.next = null;
+        }
+    }
 }
