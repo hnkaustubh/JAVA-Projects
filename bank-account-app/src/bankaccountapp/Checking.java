@@ -13,5 +13,6 @@ public class Checking extends Account{
 	
 	public void showInfo() {
 		System.out.println("Account Type: Checking");
+		
 	}
 }

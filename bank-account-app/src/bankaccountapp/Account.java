@@ -32,8 +32,7 @@ public abstract class Account implements IBaseRate{
 		System.out.println(""
 				+ "Name"+name
 				+ "\n Account Number" + accountNumber
-				+ "\n Balance" + balance
-				);
+				+ "\n Balance" + balance);
 	}
 	
 }
